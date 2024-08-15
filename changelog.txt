@@ -1,3 +1,10 @@
-v0.1.0
-First Release
+v0.1.0.12
+Update Administrator dan Kalkulator
+- Penambahan halaman login Admin
+- Penambahan halaman manajemen database
+- Penambahan kalkulator matematika statisika
 
+----------------------------------------------------------------------------
+
+v0.1.0
+Rilis Awal
