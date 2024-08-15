@@ -13,7 +13,7 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
     </head>
-    <body class="d-flex flex-column h-100">
+    <body class="d-flex flex-column h-100" style="background-image: url('assets/img/office.jpg'); background-size: cover;">
         <main class="flex-shrink-0">
             <!-- Navigation-->
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -70,8 +70,8 @@
                 </div>
             </section>
         </main>
-        <!-- Copied modal -->
-        <div id="copiedModal" class="modal fade" tabindex="-1">
+        <!-- Login modal -->
+        <div id="loginModal" class="modal fade" tabindex="-1">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header">
@@ -79,7 +79,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <p>Teks disalin.</p>
+                <p>Username atau password salah.</p>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tutup</button>
@@ -116,7 +116,7 @@
             let form = document.querySelector("#administratorLoginForm");
 
             form.addEventListener("submit", (e) => {
-                //e.preventDefault();
+                e.preventDefault();
                 let usernameInput = document.getElementById("username");
                 let passwordInput = document.getElementById("password");
 
@@ -124,16 +124,18 @@
                 let password = passwordInput.value;
 
                 const iv = CryptoJS.enc.Utf8.parse('678025308de70905');
-                console.log("password " + checkPassword(password));
 
-                if (checkPassword(password) && username == "admin") {
-                        setCookie("admin", decryptPassword(password));
-                    }
+                const keyutf = CryptoJS.enc.Utf8.parse(password);
+                let encrypted = CryptoJS.AES.encrypt(password, keyutf, {iv: iv});
 
-                /*fetch("https://raw.githubusercontent.com/basis64computer/basis64-math/main/password.txt").then(res => res.text()).then(text => {
-                    //console.log("password " + encryptPassword(password));
-                    
-                })*/
+                console.log("encrypted");
+
+                if (encrypted == defaultPassword && username == "admin") {
+                    setCookie("admin", password);
+                    window.location.replace("admin.html");
+                } else {
+                    $("#loginModal").modal("show");
+                }
             });
         </script>
     </body>

@@ -6,7 +6,6 @@ var userAdmin;
 var userActivated;
 
 var userDynamicID;
-var userCount;
 var userData;
 
 var databaseURL = 'https://api.jsonbin.io/v3/b/66b04555e41b4d34e41bccf3';
@@ -104,16 +103,14 @@ function getUser(database, cookieID) {
 	return getUserFromArray(database, cookieID);
 }
 
-async function isUserActivated() {
+async function getDatabase() {
   var response = await fetch(databaseURL);
   var jsonResponse = await response.json();
   let record = await jsonResponse.record;
 	let userCount = await record.users;
 	let database = await record.database;
 
-	user = getUser(database, getCookie("id"));
-	console.log("user: " + user.activated);
-  return await user.activated;
+	return await record;
 }
 
 function databaseSetName(name) {
@@ -256,7 +253,7 @@ function databaseAddUser(cookieID, name) {
 		let userCount = record.users;
 		let database = record.database;
 		
-		database.push({"id": userCount + 10000000, "cookie": cookieID, "name": name, "photo": "assets/img/user.png", "admin": false, "activated": false, "activation_expired": 0});
+		database.push({"id": userCount + 10000000, "cookie": cookieID, "name": name, "photo": "assets/img/user.png", "activated": false, "activation_expired": 62125920000});
 		userCount++;
 		record.users = userCount;
 
@@ -291,7 +288,7 @@ function databaseDeleteUser() {
 			return;
 		}
 		
-		delete database[getCookie("dynamic_id")];
+		database.splice(getCookie("dynamic_id"), 1);
 
 		console.log(JSON.stringify(record));
 
@@ -306,10 +303,11 @@ function databaseDeleteUser() {
 		req.open("PUT", "https://api.jsonbin.io/v3/b/66b04555e41b4d34e41bccf3", true);
 		req.setRequestHeader("Content-Type", "application/json");
 		req.setRequestHeader("X-Master-Key", "$2a$10$ls6EV35/v9eQm9p240tAfOJM6cj4/cHytWjQT0hEHrs.jfnrJWbAC");
+		req.onload = function() {
+			setCookie("id", "invalid", 0);
+			document.location.replace("403.html");
+		};
 		req.send(JSON.stringify(record));
-
-		setCookie("id", "invalid", 0);
-		document.location.replace("403.html");
 	});
 }
 
