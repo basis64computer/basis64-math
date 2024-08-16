@@ -314,7 +314,7 @@ function databaseDeleteUser() {
 function loadUserInfoCallback(user, userCount) {
 	console.log("user callback");
 	document.getElementById("userName").innerHTML = user.name;
-	document.getElementById("userID").innerHTML = "ID: " + user.id + "<br>Cookie ID: " + user.cookie + "<br>Dynamic ID: " + getCookie("dynamic_id");
+	document.getElementById("userID").innerHTML = "ID: " + user.id + "<br>Cookie ID: " + user.cookie + "<br>Dynamic ID: " + (getCookie("dynamic_id") + 1);
 
 	if (user.admin) {
 		document.getElementById("adminStatus").innerHTML = "Admin";
