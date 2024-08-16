@@ -1,4 +1,4 @@
-v0.1.0.12
+v0.1.0.12 (16 Agustus 2024, 08:16 AM)
 Update Administrator dan Kalkulator
 - Penambahan halaman login Admin
 - Penambahan halaman manajemen database
@@ -6,5 +6,5 @@ Update Administrator dan Kalkulator
 
 ----------------------------------------------------------------------------
 
-v0.1.0
+v0.1.0 (13 Agustus 2024, 04:30 PM)
 Rilis Awal
