@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>BASIS-64 Math - Statistika</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body class="d-flex flex-column h-100">
+        <main class="flex-shrink-0">
+            <!-- Navigation-->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container px-3">
+                    <a class="navbar-brand" href="index.html"><img src="assets/img/logo.png" width="48px" height="48px" />BASIS-64 Math</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="about.html">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="feedback.html">Feedback</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false>">
+                                    <img id="userProfilePhoto" src="assets/img/user.png" class="user-img" width="32px" height="32px" onload=""></img>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                                    <li>
+                                        <a id="btn-create-account" class="dropdown-item btn-outline-dark" href="account-info.html">Lihat Akun</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- Page Content-->
+            <section class="py-5">
+                <div class="container px-3 my-0">
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Statistik</h1>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Input Data Kelompok
+                            </div>
+                            <div class="card-body">
+                                <div class="row mb-3" id="dataTable">
+                                    <div class="col-md-6 mb-3">
+                                        <div class="form-floating">
+                                            <p>Interval</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="form-floating">
+                                            <p>Frekuensi</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-md-8">
+                                        <div class="form-floating">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-floating">
+                                            <div class="d-grid"><button class="btn btn-primary btn-block" onclick="addTable()">Add</button></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-floating">
+                                            <div class="d-grid"><button class="btn btn-primary btn-block" onclick="calculate()">Reset</button></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-floating">
+                                            <div class="d-grid"><button class="btn btn-primary btn-block" onclick="parseTable()">Calculate</button></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-4 mb-0">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Input Data
+                            </div>
+                            <div class="card-body">
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" id="dataInput" type="text" />
+                                    <label for="dataInput">Data</label>
+                                </div>
+                                <div class="mt-4 mb-0">
+                                    <div class="d-grid"><button class="btn btn-primary btn-block" onclick="calculate()">Calculate</button></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Tabel Data
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Data</th>
+                                            <th>Frekuensi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th>1</th>
+                                            <th>0</th>
+                                            <th>0</th>
+                                        </tr>
+                                    </tbody>
+                                    
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Jumlah, Modus, dan Mean
+                            </div>
+                            <div class="card-body">
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" id="jumlahResult" type="text" value="0" readonly />
+                                    <label for="jumlahResult">Jumlah</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" id="modusResult" type="text" value="0" readonly />
+                                    <label for="modusResult">Modus</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" id="meanResult" type="text" value="0" readonly />
+                                    <label for="meanResult">Mean</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Kuartil
+                            </div>
+                            <div class="card-body">
+                                <p id="jumlahDataResult"></p>
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <div class="form-floating mb-3 mb-md-0">
+                                            <p id="kuartilResult01"></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-floating">
+                                            <p id="kuartilResult02"></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-floating">
+                                            <p id="kuartilResult03"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Jangkauan Data dan Kuartil
+                            </div>
+                            <div class="card-body">
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <div class="form-floating mb-3 mb-md-0">
+                                            <p id="jangkauanDataResult"></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <p id="jangkauanKuartilResult"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Simpangan Rata-rata dan Kuartil
+                            </div>
+                            <div class="card-body">
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <div class="form-floating mb-3 mb-md-0">
+                                            <p id="SimpanganRataResult"></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <p id="SimpanganKuartilResult"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Varians (Ragam), Simpangan Baku, dan Rataan Tiga Kuartil
+                            </div>
+                            <div class="card-body">
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <div class="form-floating mb-3 mb-md-0">
+                                            <p id="variansResult"></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-floating">
+                                            <p id="simpanganBakuResult"></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-floating">
+                                            <p id="rataanKuartilResult"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        var Q1;
+                        var Q2;
+                        var Q3;
+                        const average = array => array.reduce((a, b) => a + b) / array.length;
+
+                        const tableInvervalArray = [];
+                        const tableFrequencyArray = [];
+
+                        function parseTable() {
+                            // Hitung frekuensi setiap nilai
+                            const frekuensi = {};
+                            var data = new Array();
+                            for (var i = 0; i<tableInvervalArray.length; i++) {
+                                var values = tableInvervalArray[i].value;
+                                arr = values.split('-').map(val => parseFloat(val)).filter(val => !Number.isNaN(val));
+                                for (var j = 0; j<tableFrequencyArray[i].value; j++) {
+                                    data.push((arr[1] + arr[0])/2);
+                                }
+                            }
+                            document.getElementById("dataInput").value = data.join(" ");
+                        }
+
+                        function addTable() {
+                            tableInvervalArray[tableInvervalArray.length] = add();
+                            tableFrequencyArray[tableFrequencyArray.length] = add();
+                        }
+                        function add() {
+                            var div = document.createElement("div");
+                            var div2 = document.createElement("div");
+                            var input = document.createElement("input");
+                            div.setAttribute("class", "col-md-6 mb-3");
+                            div2.setAttribute("class", "form-floating");
+                            input.setAttribute("type", "text");
+                            input.setAttribute("class", "form-control");
+                            div2.appendChild(input);
+                            div.appendChild(div2);
+                            document.getElementById("dataTable").appendChild(div);
+                            return input;
+                        };
+                        function calculate() {
+                            array = parseDataInput();
+                            document.getElementById("jumlahResult").value = array.length;
+                            document.getElementById("modusResult").value = findModus(array);
+                            document.getElementById("meanResult").value = average(array);
+                            document.getElementById("jumlahDataResult").innerHTML = array.length + " -> " + (isOdd(array.length)?"Ganjil":"Genap");
+                            generateTable(array);
+                            calculateKuartil(array);
+                            calculateJangkauan(array);
+                            calculateSimpangan(array);
+                            calculateSimpanganBaku(array);
+                        }
+                        function calculateSimpanganBaku(array) {
+                            result = document.getElementById("variansResult");
+                            result2 = document.getElementById("simpanganBakuResult");
+                            result3 = document.getElementById("rataanKuartilResult");
+
+                            // create a variable for the sum and initialize it
+                            let sum = 0;
+
+                            // iterate over each item in the array
+                            for (let i = 0; i < array.length; i++ ) {
+                              sum += (array[i] - average(array))*(array[i] - average(array));
+                              console.log((array[i] - average(array))*(array[i] - average(array)));
+                            }
+                            
+                            result.innerHTML = "\\(Varians = \\frac{\\sum f i (Xi-\\bar{x})^2}{\\sum f} \\)<br><br>\\(&emsp; &emsp; &emsp; &emsp; = \\frac{" + sum + "}{" + array.length + "}\\)<br><br>\\(&emsp; &emsp; &emsp; &emsp; = " + (sum/array.length) + "\\)";
+
+                            result2.innerHTML = "\\(S = \\sqrt{Varians} \\)<br><br>\\(&emsp; = \\sqrt{\\frac{" + sum + "}{" + array.length + "}}\\)<br><br>\\(&emsp; = " + Math.sqrt(sum/array.length) + "\\)";
+
+                            result3.innerHTML = "\\(Qd = \\frac{1}{2} (Q3 - Q1)\\)<br><br>\\(&emsp; = \\frac{1}{2} (" + Q3 + " - " + Q1 + ")\\)<br><br>\\(&emsp; = \\frac{1}{2}" + (Q3 - Q1) + "\\)<br><br>\\(&emsp; = " + ((Q3 - Q1)/2) + "\\)";
+
+
+                            MathJax.typeset();
+                        }
+                        function calculateSimpangan(array) {
+                            result = document.getElementById("SimpanganRataResult");
+                            result2 = document.getElementById("SimpanganKuartilResult");
+
+                            // create a variable for the sum and initialize it
+                            let sum = 0;
+
+                            // iterate over each item in the array
+                            for (let i = 0; i < array.length; i++ ) {
+                              sum += Math.abs(array[i] - average(array));
+                              console.log(array[i] - average(array));
+                            }
+                            
+                            result.innerHTML = "\\(SR = \\frac{\\sum f i\\left\\vert Xi-\\bar{x}\\right\\vert}{\\sum f} \\)<br><br>\\(&emsp; = \\frac{" + sum + "}{" + array.length + "}\\)<br><br>\\(&emsp; = " + (sum/array.length) + "\\)";
+
+                            result2.innerHTML = "\\(Qd = \\frac{1}{2} (Q3 - Q1)\\)<br><br>\\(&emsp; = \\frac{1}{2} (" + Q3 + " - " + Q1 + ")\\)<br><br>\\(&emsp; = \\frac{1}{2}" + (Q3 - Q1) + "\\)<br><br>\\(&emsp; = " + ((Q3 - Q1)/2) + "\\)";
+
+
+                            MathJax.typeset();
+                        }
+                        function calculateJangkauan(array) {
+                            result = document.getElementById("jangkauanDataResult");
+                            result2 = document.getElementById("jangkauanKuartilResult");
+                            
+                            result.innerHTML = "\\(J = Xmax - Xmin\\)<br><br>\\(&ensp; = " + findLargest(array) + " - " + findSmallest(array) + "\\)<br><br>\\(&ensp; = " + (findLargest(array) - findSmallest(array)) + "\\)";
+
+                            result2.innerHTML = "\\(H = Q3 - Q1\\)<br><br>\\(&emsp; = " + Q3 + " - " + Q1 + "\\)<br><br>\\(&emsp; = " + (Q3 - Q1) + "\\)";
+
+
+                            MathJax.typeset();
+                        }
+                        function calculateKuartil(array) {
+                            valueQ1 = 0;
+                            length = array.length;
+
+
+                            result = document.getElementById("kuartilResult01");
+                            result2 = document.getElementById("kuartilResult02");
+                            result3 = document.getElementById("kuartilResult03");
+                            if (isOdd(length)) {
+                                Q1 = getNilaiKuartil2(array, ((length+1)/4)-1);
+                                Q2 = getNilaiKuartil2(array, ((length+1)*3/4)-1);
+                                Q3 = getNilaiKuartil2(array, ((length+1)*3/4)-1);
+                                result.innerHTML = "\\( Letak ~ Q1 &emsp; = \\frac{1}{4} (n+1) \\)<br><br>\\( &emsp; &emsp; &emsp; &emsp; &emsp; = \\frac{1}{4} (" + length + "+1)\\)<br><br>\\( &emsp; &emsp; &emsp; &emsp; &emsp; = \\frac{1}{4} (" + (length+1) + ")\\)<br><br>\\( &emsp; &emsp; &emsp; &emsp; &emsp; = \\frac{" + (length+1) + "}{4}\\)<br><br>\\( &emsp; &emsp; &emsp; &emsp; &emsp; = " + ((length+1)/4) + "\\)<br><br>" + getNilaiKuartil(array, ((length+1)/4)-1, 1);
+                                result2.innerHTML = "\\( Letak ~ Q2 &emsp; = \\frac{1}{2} (n+1) \\)<br><br>\\( &emsp; &emsp; &emsp; &emsp; &emsp; = \\frac{1}{2} (" + length + "+1)\\)<br><br>\\( &emsp; &emsp; &emsp; &emsp; &emsp; = \\frac{1}{2} (" + (length+1) + ")\\)<br><br>\\( &emsp; &emsp; &emsp; &emsp; &emsp; = \\frac{" + (length+1) + "}{2}\\)<br><br>\\( &emsp; &emsp; &emsp; &emsp; &emsp; = " + ((length+1)/2) + "\\)<br><br>" + getNilaiKuartil(array, ((length+1)/2)-1, 2);
+                                result3.innerHTML = "\\( Letak ~ Q3 &emsp; = \\frac{3}{4} (n+1) \\)<br><br>\\( &emsp; &emsp; &emsp; &emsp; &emsp; = \\frac{3}{4} (" + length + "+1)\\)<br><br>\\( &emsp; &emsp; &emsp; &emsp; &emsp; = \\frac{3}{4} (" + (length+1) + ")\\)<br><br>\\( &emsp; &emsp; &emsp; &emsp; &emsp; = \\frac{" + ((length+1)*3) + "}{4}\\)<br><br>\\( &emsp; &emsp; &emsp; &emsp; &emsp; = " + ((length+1)*3/4) + "\\)<br><br>" + getNilaiKuartil(array, ((length+1)*3/4)-1, 3);
+                            } else {
+                                Q1 = getNilaiKuartil2(array, ((length+2)/4)-1);
+                                Q2 = ((array[((length/2))] + array[((length/2)+1)])/2);
+                                Q3 = getNilaiKuartil2(array, ((3*length+2)/4)-1);
+                                result.innerHTML = "\\( Letak ~ Q1 &emsp; = \\frac{1}{4} (n+1) \\)<br><br>\\( &emsp; &emsp; &emsp; &emsp; &emsp; = \\frac{1}{4} (" + length + "+2)\\)<br><br>\\( &emsp; &emsp; &emsp; &emsp; &emsp; = \\frac{1}{4} (" + (length+2) + ")\\)<br><br>\\( &emsp; &emsp; &emsp; &emsp; &emsp; = \\frac{" + (length+1) + "}{4}\\)<br><br>\\( &emsp; &emsp; &emsp; &emsp; &emsp; = " + ((length+2)/4) + "\\)<br><br>" + getNilaiKuartil(array, ((length+2)/4)-1, 1);
+                                result2.innerHTML = "\\( Letak ~ Q2 &emsp; = \\frac{1}{2} (X \\frac{n}{2} + X \\frac{Xn}{2} + 1) \\)<br><br>\\( &emsp; &emsp; &emsp; &emsp; &emsp; = \\frac{1}{2} (X \\frac{" + length + "}{2} + X \\frac{" + length + "}{2} + 1)\\)<br><br>\\( &emsp; &emsp; &emsp; &emsp; &emsp; = \\frac{1}{2} (X " + (length/2) + " + X " + (length/2) + " + 1)\\)<br><br>\\( &emsp; &emsp; &emsp; &emsp; &emsp; = \\frac{1}{2} (X " + (length/2) + " + X " + ((length/2)+1) + ")\\)<br><br>\\( &emsp; &emsp; &emsp; &emsp; &emsp; = \\frac{1}{2} (" + array[(length/2)] + " + " + array[((length/2)+1)] + ")\\)<br><br>\\( &emsp; &emsp; &emsp; &emsp; &emsp; = \\frac{(" + array[((length/2))] + " + " + array[((length/2)+1)] + ")}{2}\\)<br><br>\\( Nilai ~ Q2 &emsp; = " + ((array[((length/2))] + array[((length/2)+1)])/2) + "\\)<br><br>";
+                                result3.innerHTML = "\\( Letak ~ Q3 &emsp; = \\frac{1}{4} (3n+2) \\)<br><br>\\( &emsp; &emsp; &emsp; &emsp; &emsp; = \\frac{1}{4} (3 \\times " + length + "+2)\\)<br><br>\\( &emsp; &emsp; &emsp; &emsp; &emsp; = \\frac{1}{4} (" + (3*length) + " + 2)\\)<br><br>\\( &emsp; &emsp; &emsp; &emsp; &emsp; = \\frac{1}{4} (" + (3*length+2) + ")\\)<br><br>\\( &emsp; &emsp; &emsp; &emsp; &emsp; = \\frac{" + ((3*length+2)) + "}{4}\\)<br><br>\\( &emsp; &emsp; &emsp; &emsp; &emsp; = " + ((3*length+2)/4) + "\\)<br><br>" + getNilaiKuartil(array, ((3*length+2)/4)-1, 3);
+                            }
+                            MathJax.typeset();
+
+                        }
+
+                        function getNilaiKuartil(array, letak, kuartil) {
+                            if (letak % 1 > 0.1) {
+                                return "\\(Nilai ~ Q" + kuartil + " &emsp; = \\frac{" + array[Math.floor(letak)] + " + " + array[Math.ceil(letak)] + "}{2}\\) <br><br>&emsp; &emsp; &emsp; &emsp; &emsp; \\( = \\frac{" + (array[Math.floor(letak)] + array[Math.ceil(letak)]) + "}{2}\\)<br><br> &emsp; &emsp; &emsp; &emsp; &emsp; \\( = " + ((array[Math.floor(letak)] + array[Math.ceil(letak)])/2) + "\\)";
+                            } else {
+                                return "\\(Nilai ~ Q" + kuartil + " &emsp; = " + array[Math.floor(letak)] + "\\)";
+                            }
+                        }
+
+                        function getNilaiKuartil2(array, letak) {
+                            if (letak % 1 > 0.1) {
+                                return ((array[Math.floor(letak)] + array[Math.ceil(letak)])/2);
+                            } else {
+                                return array[Math.floor(letak)];
+                            }
+                        }
+
+                        function isOdd(num) { return num % 2;}
+                        function generateTable(data) {
+                            // Hitung frekuensi setiap nilai
+                            const frekuensi = {};
+                            for (const num of data) {
+                              if (frekuensi[num]) {
+                                frekuensi[num]++;
+                              } else {
+                                frekuensi[num] = 1;
+                              }
+                            }
+
+                            // Buat tabel HTML
+                            var table = document.getElementById('datatablesSimple');
+                            table.removeChild(table.getElementsByTagName("tbody")[0]); // Remove first instance of body
+                            const tableBody = table.createTBody();
+
+                            var i = 1;
+
+                            // Tambahkan baris data ke tabel
+                            for (const num in frekuensi) {
+                              const row = tableBody.insertRow();
+                              const numberCell = row.insertCell()
+                              const valueCell = row.insertCell();
+                              const frequencyCell = row.insertCell();
+
+                              numberCell.textContent = i++;
+                              valueCell.textContent = num;
+                              frequencyCell.textContent = frekuensi[num];
+                            }
+
+                            // Tampilkan tabel
+                            //document.body.appendChild(table);
+
+                        }
+                        function parseDataInput() {
+                            var values = document.getElementById("dataInput").value;
+                            arr = values.split(' ').map(val => parseFloat(val)).filter(val => !Number.isNaN(val));
+                            console.log(arr);
+                            return arr;
+                        }
+                        function findModus(data) {
+                          let modus = null;
+                          let maxf = 0;
+
+                          const f = {};
+                          for (const num of data) {
+                            if (f[num]) {
+                              f[num]++;
+                            } else {
+                              f[num] = 1;
+                            }
+                          }
+
+                          for (const num in f) {
+                            const currentf = f[num];
+                            if (currentf > maxf) {
+                              modus = num;
+                              maxf = currentf;
+                            }
+                          }
+
+                          return modus;
+                        }
+                        function findLargest(data) {
+                          let largest = null;
+
+                          for (const num of data) {
+                            if (largest === null || num > largest) {
+                              largest = num;
+                            }
+                          }
+
+                          return largest;
+                        }
+                        function findSmallest(data) {
+                          let smallest = null;
+
+                          for (const num of data) {
+                            if (smallest === null || num < smallest) {
+                              smallest = num;
+                            }
+                          }
+
+                          return smallest;
+                        }
+
+                    </script>
+                </div>
+            </section>
+        </main>
+        <!-- Footer-->
+        <footer class="bg-dark py-4 mt-auto">
+            <div class="container px-3">
+                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                    <div class="col-auto"><div class="small m-0 text-white">Copyright &copy; Your Website 2023</div></div>
+                    <div class="col-auto">
+                        <a class="link-light small" href="#!">Privacy</a>
+                        <span class="text-white mx-1">&middot;</span>
+                        <a class="link-light small" href="#!">Terms</a>
+                        <span class="text-white mx-1">&middot;</span>
+                        <a class="link-light small" href="#!">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+        <script src="js/datatables-simple-demo.js"></script>
+        <script id="MathJax-script" async 
+                src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"> 
+        </script>
+        <script src=https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.3.0/math.min.js></script>
+
+        <script src="js/jquery.min.js" type="text/javascript"></script>
+        <!-- User Not Activated Dialog modal -->
+        <div id="userNotActivatedDialogModal" class="modal fade" tabindex="-1">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Aktivasi Akun</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p id="trialTitle"></p>
+                <p>Akun kamu belum diaktivasi. Kamu dapat mengaktivasi akun kamu <a href="activation.html">di sini</a>
+                </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tutup</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script src="js/activation.js"></script>
+        <script src="js/database.js"></script>
+        <script src="js/cookie.js"></script>
+        <script type="text/javascript">
+            let page_id = "statistika";
+            document.getElementById('userProfilePhoto').src = getCookiePhoto();
+        </script>
+    </body>
+</html>
