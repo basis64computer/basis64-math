@@ -363,6 +363,10 @@
             loadAdminDatabaseTable();
 
             async function loadAdminDatabaseTable() {
+                record = null;
+                userCount = null;
+                pages = null;
+                database = null;
                 await initializeDatabase();
                 refreshTable();
             }
@@ -372,9 +376,14 @@
 
                 req.onreadystatechange = () => {
                   if (req.readyState == XMLHttpRequest.DONE) {
-                    console.log(req.responseText);
+                    //console.log(req.responseText);
                   }
                 };
+
+                record.pages = pages;
+                record.database = database;
+
+                console.log("save database: " + JSON.stringify(record));
 
                 req.open("PUT", "https://api.jsonbin.io/v3/b/66b04555e41b4d34e41bccf3", true);
                 req.setRequestHeader("Content-Type", "application/json");
@@ -385,10 +394,11 @@
             }
 
             function refreshTable() {
+                console.log("refreshTable " + JSON.stringify(pages));
                 table2.innerHTML = "";
                 for (var i=0; i<database.length; i++) {
                     if (database[i]) {
-                        addUserTable(i, database[i].photo, "Nama: " + database[i].name + "<br/>ID: " + database[i].id + "<br/>Cookie ID: " + database[i].cookie + "<br/>Dynamic ID: " + (10000001 + i), database[i].activated, database[i].activation_expired);
+                        addUserTable(i, database[i].photo, database[i].id, "Nama: " + database[i].name + "<br/>ID: " + database[i].id + "<br/>Cookie ID: " + database[i].cookie + "<br/>Dynamic ID: " + (10000001 + i), database[i].activated, database[i].activation_expired);
                     }
                 }
 
@@ -396,6 +406,7 @@
                 pagesObjectKey = Object.keys(pages);
                 for (var i=0; i<pagesObjectKey.length; i++) {
                     addPremiumPageTable(i, pagesObjectKey[i], pages[pagesObjectKey[i]]);
+                    //console.log(pagesObjectKey[i]);
                 }
 
                 update_tables();
@@ -497,36 +508,58 @@
                 let myDate = inputDate.value;
                 myDate = myDate.split("-");
                 let newDate = new Date( myDate[0], myDate[1] - 1, myDate[2]);
-                database[num].activation_expired = newDate.getTime();
+                database[num].activation_expired = (newDate.getTime() + 86399000);
+                console.log("date: " + (newDate.getTime() + 8639900));
             }
 
-            function handleButton(num) {
+            function handleButton(num, id) {
                 let deleteButton = document.getElementById("deleteAccountConfirmationButton");
                 $("#deleteAccountModal").modal("show");
 
                 deleteButton.addEventListener("click", function() {
                     console.log("database delete " + num);
-                    database.splice(num, 1);
-                    console.log(database);
+                    //database = database.filter((i) => i.item !== 1)
+                    database = database.filter((i) => i.id !== id);
+                    console.log(id + " " + database);
+                    //database.splice(num, 1);
+                    //console.log(database);
                     refreshTable();
                     $("#deleteAccountModal").modal("hide");
                 });
             }
 
-            function handleButton2(num) {
+            function deletePage(num) {
+                array = Object.keys(pages);
+                array = null;
+            }
+            function handleButton2(num, id) {
                 let deleteButton = document.getElementById("deletePageConfirmationButton");
                 $("#deletePremiumPageModal").modal("show");
 
+                console.log("button " + num);
+
                 deleteButton.addEventListener("click", function() {
-                    console.log("database delete " + num);
-                    array = Object.keys(pages);
-                    delete pages[array[num]];
+                    console.log("buttonModal " + id);
+                    //console.log("database delete " + JSON.stringify(pages));
+                    //deletePage(num);
+                    //console.log("page " + array[num]);
+                    //delete pages[array[num]];
+                    //console.log("database delete " + JSON.stringify(pages));
+                    /*pages = Object.fromEntries(
+                        Object.entries(pages).
+                            filter(([key, value]) => 
+                                key !== id)
+                    );*/
+                    pages = Object.fromEntries(
+                        Object.entries(pages).
+                            filter(([key, value]) => 
+                                key !== id));
                     refreshTable();
                     $("#deletePremiumPageModal").modal("hide");
                 });
             }
 
-            function addUserTable(num, photo, info, activated, expired) {
+            function addUserTable(num, photo, id, info, activated, expired) {
                 var tr = document.createElement('tr');
                 tr.setAttribute("id", "userTable" + num);
                 var td = document.createElement('td');
@@ -550,7 +583,7 @@
                 tr.appendChild(td5);
 
                 var td6 = document.createElement('td');
-                td6.appendChild(createButton("Hapus akun", "deleteAccountButton" + num, "btn btn-danger", "handleButton(" + num + ");"));
+                td6.appendChild(createButton("Hapus akun", "deleteAccountButton" + num, "btn btn-danger", "handleButton(" + num + ", " + id + ");"));
                 tr.appendChild(td6);
 
                 table2.appendChild(tr);
@@ -572,7 +605,7 @@
                 tr.appendChild(td3);
 
                 var td4 = document.createElement('td');
-                td4.appendChild(createButton("Hapus", "deletePageButton" + num, "btn btn-danger", "handleButton2(" + num + ");"));
+                td4.appendChild(createButton("Hapus", "deletePageButton" + num, "btn btn-danger", "handleButton2(" + num + ", '" + id + "');"));
                 tr.appendChild(td4);
 
                 table.appendChild(tr);

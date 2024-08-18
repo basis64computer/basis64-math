@@ -233,9 +233,11 @@
         <script src="js/telegrambot.js"></script>
         <script type="text/javascript">
             $(window).load(async function() {
-                let activated = await isUserActivated();
-                console.log("user2: " + activated);
-                if (activated) {
+                let record = await getDatabase();
+                let trial = getCookie("trial");
+
+                let user = getUser(record.database, getCookie("id"));
+                if (user.activated) {
                     $("#userActivatedDialogModal").modal("show");
                     $('#userActivatedDialogModal').on('hidden.bs.modal', function () {
                       document.location.replace("index.html");
