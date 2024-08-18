@@ -1,3 +1,8 @@
+v0.1.0.14 (18 Agustus 2024, 08:42 PM)
+Update Administrator dan Manajemen Database
+- Perbaikan bug
+- Perbaikan halaman manajemen database
+
 v0.1.0.12 (16 Agustus 2024, 08:16 AM)
 Update Administrator dan Kalkulator
 - Penambahan halaman login Admin
