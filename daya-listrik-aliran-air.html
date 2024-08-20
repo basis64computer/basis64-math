@@ -116,7 +116,7 @@
                                     </div>
                                     <div class="form-floating mb-3">
                                         <input class="form-control" id="inputEfficiency" type="text" required />
-                                        <label for="inputLiquidSpeed">\( \eta \) : efisiensi \( (%) \)</label>
+                                        <label for="inputLiquidSpeed">\( \eta \) : efisiensi \( (\%) \)</label>
                                     </div>
 
                                     <div class="d-grid"><button class="btn btn-primary btn-lg" onclick="onResultView()">Enter</button></div>
@@ -131,7 +131,7 @@
                                     var g = document.getElementById("inputGravity").value;
                                     var h = document.getElementById("inputHeight").value;
                                     var eta = document.getElementById("inputEfficiency").value;
-                                    document.getElementById("calculatorResult").innerHTML = "\\( P = \\rho \\times Q \\times g \\times h \\times \\eta \\)<br/>&emsp; \\( = " + rho + " \\times " + q + " \\times " + g + " \\times " + h + " \\times " + eta + " \\)<br/>&emsp; \\( = " + (rho*q*g*h*eta) + " ~ watt \\)";
+                                    document.getElementById("calculatorResult").innerHTML = "\\( P = \\rho \\times Q \\times g \\times h \\times \\eta \\)<br/>&emsp; \\( = " + rho + " \\times " + q + " \\times " + g + " \\times " + h + " \\times " + eta + " \\)<br/>&emsp; \\( = " + (rho*q*g*h*(eta/100)) + " ~ watt \\)";
                                     MathJax.typeset(); 
                                 }
                             </script>
