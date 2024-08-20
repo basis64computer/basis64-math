@@ -31,36 +31,32 @@
 			]
 		},
 		{
-			"title": "Lorem Ipsum",
-			"description": "Lorem ipsum sit amet, consectetuer adipiscing elit. Eget rhoncus aliquet consectetur pretium velit, erat rhoncus ac.",
-			"thumbnail": "assets/img/thumbnail/statistika.jpg",
-			"destination": "statistika.html",
+			"title": "Daya Aliran Listrik",
+			"description": "Rumus matematika untuk KIHAJAR STEM",
+			"thumbnail": "assets/img/thumbnail/kihajar-stem.jpg",
+			"destination": "daya-aliran-listrik.html",
 			"creator": "Admin",
 			"creator_photo": "assets/img/admin.png",
-			"date": "16 Juli 2024 &middot 09:00 AM",
+			"date": "20 Agustus 2024 &middot 01:11 PM",
 			"badges": [
 				{
-					"title": "Kelas X",
-					"color": "bg-primary"
-				},
-				{
-					"title": "Kelas X",
-					"color": "bg-danger"
+					"title": "KIHAJAR STEM",
+					"color": "bg-dark"
 				}
 			]
 		},
 		{
-			"title": "ASDF",
-			"description": "asdfsdfasdfasdfasdfasdfsafsfasdffsf",
-			"thumbnail": "assets/img/thumbnail/statistika.jpg",
-			"destination": "statistika.html",
+			"title": "Efisiensi Panel Surya",
+			"description": "Rumus matematika untuk KIHAJAR STEM",
+			"thumbnail": "assets/img/thumbnail/kihajar-stem.jpg",
+			"destination": "efisiensi-panel-surya.html",
 			"creator": "Admin",
 			"creator_photo": "assets/img/admin.png",
-			"date": "16 Juli 2024 &middot 09:00 AM",
+			"date": "20 Agustus 2024 &middot 01:11 PM",
 			"badges": [
 				{
-					"title": "Kelas X",
-					"color": "bg-primary"
+					"title": "KIHAJAR STEM",
+					"color": "bg-dark"
 				}
 			]
 		}
