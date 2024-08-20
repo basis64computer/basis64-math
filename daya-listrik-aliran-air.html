@@ -131,7 +131,7 @@
                                     var g = document.getElementById("inputGravity").value;
                                     var h = document.getElementById("inputHeight").value;
                                     var eta = document.getElementById("inputEfficiency").value;
-                                    document.getElementById("calculatorResult").innerHTML = "\\( P = \\rho \\times Q \\times g \\times h \\times \\eta \\)<br/>&emsp; \\( = " + rho + " \\times " + q + " \\times " + g + " \\times " + h + " \\times " + eta + " \\)<br/>&emsp; \\( = " + (rho*q*g*h*(eta/100)) + " ~ watt \\)";
+                                    document.getElementById("calculatorResult").innerHTML = "\\( P = \\rho \\times Q \\times g \\times h \\times \\eta \\)<br/>&emsp; \\( = " + rho + " \\times " + q + " \\times " + g + " \\times " + h + " \\times " + eta + " \\)<br/>&emsp; \\( = " + (rho*q*g*h*(eta/100)) + " ~ watt \\)<br/>&emsp; \\( = " + (rho*q*g*h*(eta/100000)) + " ~ kilowatt \\)<br/>&emsp; \\( = " + (rho*q*g*h*(eta/100000000)) + " ~ megawatt \\)";
                                     MathJax.typeset(); 
                                 }
                             </script>
