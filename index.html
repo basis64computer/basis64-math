@@ -78,57 +78,20 @@
             <!-- Blog preview section-->
             <section class="py-5" style="background-image: url('assets/img/office.jpg'); background-size: cover;">
                 <div class="container px-4 my-5">
-                    <div class="row gx-5 justify-content-center">
-                        <div class="col-lg-8 col-xl-6">
-                        </div>
-                    </div>
-
-                    <div class="row gx-5">
-                        <!-- Trigonometri -->
-                        <div class="col-lg-4 mb-5">
-                            <div class="card h-100 shadow border-0">
-                                <img class="card-img-top" src="assets/img/trigonometri.jpg" alt="..." />
-                                <div class="card-body p-4">
-                                    <div class="badge bg-primary rounded-pill mb-2">Kelas X</div>
-                                    <a href="trigonometry.html" class="text-decoration-none link-dark stretched-link" href="#!"><h5 class="card-title mb-3">Trigonometri</h5></a>
-                                    <p class="card-text mb-0">Kalkulator ini dapat menghitung nilai-nilai fungsi trigonometri seperti sinus, cosinus, tangen, dan lainnya.</p>
-                                </div>
-                                <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
-                                    <div class="d-flex align-items-end justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <img class="rounded-circle me-3" src="assets/img/admin.png" alt="..." width="32px" height="32px" />
-                                            <div class="small">
-                                                <div class="fw-bold">Admin</div>
-                                                <div class="text-muted">30 Juli 2024 &middot; 09:26 AM</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                    <!-- Call to action-->
+                    <aside class="bg-dark rounded-3 p-4 p-sm-5 mt-5">
+                        <div class="row">
+                           <div class="col-lg-12">
+                            <div class="input-group input-group-lg">
+                              <input type="text" class="form-control input-lg" id="inputSearch" placeholder="Cari kalkulator">
+                              <button class="btn btn-outline-light" type="button">Cari</button>
                             </div>
+                          </div>
                         </div>
+                    </aside>
 
-                        <!-- Statistika -->
-                        <div class="col-lg-4 mb-5">
-                            <div class="card h-100 shadow border-0">
-                                <img class="card-img-top" src="assets/img/trigonometri.jpg" alt="..." />
-                                <div class="card-body p-4">
-                                    <div class="badge bg-primary rounded-pill mb-2">Kelas X</div>
-                                    <a href="trigonometry.html" class="text-decoration-none link-dark stretched-link" href="#!"><h5 class="card-title mb-3">Statistika</h5></a>
-                                    <p class="card-text mb-0">Kalkulator ini bisa melakukan berbagai macam perhitungan statistik, mulai dari perhitungan rata-rata, median, modus, hingga analisis varians.</p>
-                                </div>
-                                <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
-                                    <div class="d-flex align-items-end justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <img class="rounded-circle me-3" src="assets/img/admin.png" alt="..." width="32px" height="32px" />
-                                            <div class="small">
-                                                <div class="fw-bold">Admin</div>
-                                                <div class="text-muted">16 Juli 2024 &middot; 09:00 AM</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="row gx-5 mt-5" id="searchResult">
+                        
                     </div>
 
                     <!-- Call to action-->
@@ -146,6 +109,119 @@
                     </aside>
                 </div>
             </section>
+            <script type="text/javascript">
+                let searchResult = document.getElementById("searchResult");
+                let calculatorJson;
+
+                async function loadCalculatorJSON() {
+                    let response = await fetch("https://raw.githubusercontent.com/basis64computer/basis64-math/main/calculator.json");
+                    let json = await response.json();
+                    return await json.calculator;
+                }
+
+                async function initialize() {
+                    calculatorJson = await loadCalculatorJSON();
+                    console.log(calculatorJson.length);
+
+                    for(var i=0; i<calculatorJson.length; i++) {
+                        let calc = calculatorJson[i];
+                        addCardElement(calc.title, calc.description, calc.thumbnail, calc.destination, calc.creator, calc.creator_photo, calc.date, calc.badges);
+                    }
+
+                    searchResult.addEventListener("input", () => {
+                        console.log(searchResult.value); // Log the new value after an input is made
+                    });
+                }
+
+                function addCardElement(title, description, thumbnail, destination, creator, creatorPhoto, date, badges) {
+                    // Card layout
+                    const div01 = document.createElement("div");
+                    div01.setAttribute("class", "col-lg-4 mb-5");
+                    const div02 = document.createElement("div");
+                    div02.setAttribute("class", "card h-100 shadow border-0");
+                    div01.appendChild(div02);
+
+                    // Card-thumbnail layout
+                    const div03 = document.createElement("div");
+                    div03.setAttribute("class", "ratio ratio-16x9");
+                    const img = document.createElement("img");
+                    img.setAttribute("class", "card-img-top");
+                    img.setAttribute("src", thumbnail);
+                    div03.appendChild(img);
+                    div02.appendChild(div03);
+
+                    // Card-body layout
+                    const div04 = document.createElement("div");
+                    div04.setAttribute("class", "card-body p-4");
+                    for(var i=0; i<badges.length; i++) {
+                        let badge = document.createElement("div");
+                        badge.setAttribute("class", "badge rounded-pill mb-2 me-1 " + badges[i].color);
+                        badge.appendChild(document.createTextNode(badges[i].title));
+                        div04.appendChild(badge);
+                    }
+                    const link = document.createElement("a");
+                    link.setAttribute("href", destination);
+                    link.setAttribute("class", "text-decoration-none link-dark stretched-link");
+                    const titleElement = document.createElement("h5");
+                    titleElement.setAttribute("class", "card-title mb-3");
+                    titleElement.appendChild(document.createTextNode(title))
+                    link.appendChild(titleElement);
+                    div04.appendChild(link);
+                    const descriptionElement = document.createElement("p");
+                    descriptionElement.setAttribute("class", "card-text mb-0");
+                    descriptionElement.appendChild(document.createTextNode(description));
+                    div04.appendChild(descriptionElement);
+                    div02.appendChild(div04);
+
+                    // Card-footer layout
+                    const div05 = document.createElement("div");
+                    div05.setAttribute("class", "card-footer p-4 pt-0 bg-transparent border-top-0");
+                    const div06 = document.createElement("div");
+                    div06.setAttribute("class", "d-flex align-items-end justify-content-between");
+                    div05.appendChild(div06);
+                    const div07 = document.createElement("div");
+                    div07.setAttribute("class", "d-flex align-items-center");
+                    div06.appendChild(div07);
+
+                    const img2 = document.createElement("img");
+                    img2.setAttribute("class", "rounded-circle me-3");
+                    img2.setAttribute("width", "32px");
+                    img2.setAttribute("height", "32px");
+                    img2.setAttribute("alt", "...")
+                    img2.setAttribute("src", creatorPhoto);
+                    div07.appendChild(img2);
+
+                    const div08 = document.createElement("div");
+                    div08.setAttribute("class", "small");
+                    div07.appendChild(div08);
+
+                    const div09 = document.createElement("div");
+                    div09.setAttribute("class", "fw-bold");
+                    div09.appendChild(document.createTextNode(creator));
+                    div08.appendChild(div09);
+
+                    const div10 = document.createElement("div");
+                    div10.setAttribute("class", "text-muted");
+                    div10.appendChild(document.createTextNode(date.replace("&middot", "\267")));
+                    div08.appendChild(div10);
+                    div02.appendChild(div05);
+
+
+                    let searchResult = document.getElementById("searchResult");
+                    searchResult.appendChild(div01);
+                    console.log("created new element");
+                }
+
+                window.addEventListener('DOMContentLoaded', event => {
+                    initialize();
+                });
+
+                
+
+                function function_name(argument) {
+                    // body...
+                }
+            </script>
             <!-- Testimonial section-->
             <div class="py-5 bg-dark">
                 <div class="container px-5 my-5">
@@ -233,12 +309,22 @@
         <script src="js/jquery.min.js" type="text/javascript"></script>
         <script src="js/linedtextarea.js"></script>
         <link href="css/linedtextarea.css" type="text/css" rel="stylesheet"/>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
         <script src="js/icons.js"></script>
         <script src="js/cookie.js"></script>
         <script src="js/database.js"></script>
         <script>
+            window.addEventListener('DOMContentLoaded', event => {
+                // Simple-DataTables
+                // https://github.com/fiduswriter/Simple-DataTables/wiki
+
+                const calculatorTable = document.getElementById('calculatorTable');
+                if (calculatorTable) {
+                    new simpleDatatables.DataTable(calculatorTable);
+                }
+            });
             /*$(function() {
                 $(".lined").linedtextarea(
                     {selectedLine: 1}
