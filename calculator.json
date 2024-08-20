@@ -27,6 +27,38 @@
 					"color": "bg-primary"
 				}
 			]
+		},
+		{
+			"title": "Lorem Ipsum",
+			"description": "Lorem ipsum sit amet, consectetuer adipiscing elit. Eget rhoncus aliquet consectetur pretium velit, erat rhoncus ac.",
+			"thumbnail": "assets/img/thumbnail/statistika.jpg",
+			"destination": "statistika.html",
+			"creator": "Admin",
+			"creator_photo": "assets/img/admin.png",
+			"badges": [
+				{
+					"title": "Kelas X",
+					"color": "bg-primary"
+				},
+				{
+					"title": "Kelas X",
+					"color": "bg-danger"
+				}
+			]
+		},
+		{
+			"title": "ASDF",
+			"description": "asdfsdfasdfasdfasdfasdfsafsfasdffsf",
+			"thumbnail": "assets/img/thumbnail/statistika.jpg",
+			"destination": "statistika.html",
+			"creator": "Admin",
+			"creator_photo": "assets/img/admin.png",
+			"badges": [
+				{
+					"title": "Kelas X",
+					"color": "bg-primary"
+				}
+			]
 		}
 	]
 }
