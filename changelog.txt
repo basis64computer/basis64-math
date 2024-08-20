@@ -1,4 +1,4 @@
-v0.1.0.14 (18 Agustus 2024, 08:42 PM)
+v0.1.0.20 (20 Agustus 2024, 01:30 PM)
 Update Kalkulator
 - Penambahan kalkulator daya listrik aliran air
 - Penambahan kalkulator efisiensi panel surya
