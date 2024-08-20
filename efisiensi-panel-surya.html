@@ -52,7 +52,7 @@
                         <div class="col-xl-16">
                             <div class="card mb-4">
                                 <div class="card-header">
-                                    <i class="fas fa-table me-1"></i>
+                                    <i class="bi bi-table"></i>
                                     Tabel Rumus
                                 </div>
                                 <div class="card-body">
@@ -82,13 +82,13 @@
                             </div>
                             <div class="card mb-4">
                             <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                                Tabel Trigonometri
+                                <i class="bi bi-calculator"></i>
+                                Kalkulator
                             </div>
                             <div class="card-body">
                                     <div class="form-floating mb-3">
                                         <input class="form-control" id="inputWatt" type="text" required />
-                                        <label for="inputWatt">\( \omega \) : Daya optimal \( (\omega) \)</label>
+                                        <label for="inputWatt">\( p \) : Daya optimal \( (\omega) \)</label>
                                     </div>
                                     <div class="form-floating mb-3">
                                         <input class="form-control" id="inputLong" type="text" required />
@@ -101,7 +101,7 @@
 
                                     <div class="d-grid"><button class="btn btn-primary btn-lg" onclick="onResultView()">Enter</button></div>
                                     <div class="form-floating mb-3 card-body">
-                                        <p id="trigonometryResult">result</p>
+                                        <p id="calculatorResult">result</p>
                                     </div>
                             </div>
                             <script>
@@ -109,7 +109,7 @@
                                     var watt = document.getElementById("inputWatt").value;
                                     var long = document.getElementById("inputLong").value;
                                     var width = document.getElementById("inputWidth").value;
-                                    document.getElementById("trigonometryResult").innerHTML = "\\( efisiensi = \\frac{P}{(p \\times l)} \\times 100 \\% \\)<br/>&emsp;&emsp;&emsp;&emsp;&emsp; \\( = \\frac{" + watt + "}{(" + long + " \\times " + width + ")} \\times 100 \\% \\)<br/>&emsp;&emsp;&emsp;&emsp;&emsp; \\( = " + ((watt/(long*width))*100) + " ~ \\% \\)";
+                                    document.getElementById("calculatorResult").innerHTML = "\\( efisiensi = \\frac{P}{(p \\times l)} \\times 100 \\% \\)<br/>&emsp;&emsp;&emsp;&emsp;&emsp; \\( = \\frac{" + watt + "}{(" + long + " \\times " + width + ")} \\times 100 \\% \\)<br/>&emsp;&emsp;&emsp;&emsp;&emsp; \\( = " + ((watt/(long*width))*100) + " ~ \\% \\)";
                                     MathJax.typeset(); 
                                 }
                             </script>
