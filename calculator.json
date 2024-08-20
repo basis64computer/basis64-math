@@ -31,10 +31,10 @@
 			]
 		},
 		{
-			"title": "Daya Aliran Listrik",
+			"title": "Daya Listrik Aliran Air",
 			"description": "Rumus matematika untuk KIHAJAR STEM",
 			"thumbnail": "assets/img/thumbnail/kihajar-stem.jpg",
-			"destination": "daya-aliran-listrik.html",
+			"destination": "daya-listrik-aliran-air.html",
 			"creator": "Admin",
 			"creator_photo": "assets/img/admin.png",
 			"date": "20 Agustus 2024 &middot 01:11 PM",
