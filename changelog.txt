@@ -1,3 +1,10 @@
+v0.1.0.24 (21 Agustus 2024, 12:26 PM)
+Update Kalkulator
+- Penambahan kalkulator peningkatan CO2 per tahun
+- Perbaikan bug
+
+----------------------------------------------------------------------------
+
 v0.1.0.20 (20 Agustus 2024, 01:30 PM)
 Update Kalkulator
 - Penambahan kalkulator daya listrik aliran air
