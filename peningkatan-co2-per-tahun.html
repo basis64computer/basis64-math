@@ -96,46 +96,41 @@
 								</div>
 								<div class="card-body">
 									<div class="form-floating mb-3">
-										<input class="form-control" id="inputDensity" type="text" required />
-										<label for="inputDensity">\( \rho \) : Kepadatan Angin \( (kg/m^3) \)</label>
-									</div>
-                                    <div class="form-floating mb-3">
-                                        <input class="form-control" id="inputDiameter" type="text" required />
-                                        <label for="inputDiameter">\( D \) : Diameter \( (m) \)</label>
+                                        <input class="form-control" id="input1" type="text" required />
+                                        <label for="inputDensity">\( C(tahun ~ awal) \) : Tahun awal \( (tahun) \)</label>
                                     </div>
-									<div class="form-floating mb-3">
-										<input class="form-control" id="inputArea" type="text" required />
-										<label for="inputArea">\( A \) : Luas area \( (m^2) \)</label>
-									</div>
-									<div class="form-floating mb-3">
-										<input class="form-control" id="inputVelocity" type="text" required />
-										<label for="inputWidth">\( v \) : Kecepatan angin \( (m/s) \)</label>
-									</div>
-									<div class="d-grid">
-										<button class="btn btn-primary btn-lg" onclick="onResultView()">Enter</button>
-									</div>
-									<div class="form-floating mb-3 card-body">
-										<p id="calculatorResult">result</p>
-									</div>
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="input2" type="text" required />
+                                        <label for="inputDensity">\( C(tahun ~ akhir) \) : Tahun akhir \( (tahun) \)</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="input3" type="text" required />
+                                        <label for="inputLong">\( jumlah ~ co2 ~ tahun ~ awal \) : Jumlah CO2 pada tahun awal \( (gigaton) \)</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="input4" type="text" required />
+                                        <label for="inputWidth">\( laju ~ peningkatan \) : Laju peningkatan \( (gigaton/tahun) \)</label>
+                                    </div>
+                                    <div class="d-grid">
+                                        <button class="btn btn-primary btn-lg" onclick="onResultView()">Enter</button>
+                                    </div>
+                                    <div class="form-floating mb-3 card-body">
+                                        <p id="calculatorResult2">result</p>
+                                    </div>
 								</div>
 								<script>
 									function onResultView() {
-										var density = document.getElementById("inputDensity").value;
-                                        var diameter = document.getElementById("inputDiameter").value;
-										var area = document.getElementById("inputArea").value;
-										var velocity = document.getElementById("inputVelocity").value;
-                                        if (!area) {
-                                            area = ((diameter/2)*(diameter/2)) * Math.PI;
-                                            area = area.toFixed(2);
-                                            console.log("area ");
-                                        }
-										document.getElementById("calculatorResult").innerHTML = "\\( P = \\frac{1}{2} \\times \\rho \\times A \\times v^3 \\)<br/>&emsp;\\( = \\frac{1}{2}\\times " + density + " \\times " + area + " \\times " + Math.pow(velocity, 3) + " \\)<br/>&emsp;\\( = " + (0.5*density*area*Math.pow(velocity, 3)).toFixed(2) + " ~ watt \\)<br/>&emsp;\\( = " + (0.5*density*area*Math.pow(velocity, 3)/1000).toFixed(2) + " ~ kilowatt \\)<br/>&emsp;\\( = " + (0.5*density*area*Math.pow(velocity, 3)/1000000).toFixed(2) + " ~ megawatt \\)"; 
-										MathJax.typeset();
-									}
+                                        var input1 = document.getElementById("input1").value;
+                                        var input2 = document.getElementById("input2").value;
+                                        var input3 = document.getElementById("input3").value;
+                                        var input4 = document.getElementById("input4").value;
+                                        document.getElementById("calculatorResult2").innerHTML = "\\( C(tahun ~ akhir) = jumlah ~ co2 ~ tahun ~ awal + r \\times (tahun ~ akhir - tahun ~ awal) \\)<br/>&emsp;&emsp;&emsp;&emsp;\\(C(" + input2 + ") = " + input3 + " + " + input4 + " \\times (" + input2 + " - " + input1 + ")\\)<br/>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;\\( = " + (parseInt(input3)+(input4*(input2-input1))) + " ~ gigaton \\)"; 
+                                        MathJax.typeset();
+                                    }
 								</script>
 							</div>
 
-                            
+
 						</div>
 					</div>
 				</div>
