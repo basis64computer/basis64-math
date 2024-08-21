@@ -74,6 +74,21 @@
 					"color": "bg-dark"
 				}
 			]
+		},
+		{
+			"title": "Peningkatan CO2 Per Tahun",
+			"description": "Rumus matematika untuk KIHAJAR STEM",
+			"thumbnail": "assets/img/thumbnail/kihajar-stem.jpg",
+			"destination": "peningkatan-co2-per-tahun.html",
+			"creator": "Admin",
+			"creator_photo": "assets/img/admin.png",
+			"date": "21 Agustus 2024 &middot 11:50 AM",
+			"badges": [
+				{
+					"title": "KIHAJAR STEM",
+					"color": "bg-dark"
+				}
+			]
 		}
 	]
 }
