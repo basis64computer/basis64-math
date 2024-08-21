@@ -94,8 +94,9 @@
                                         <div class="form-floating col col-2">
                                             <select id="multiplier" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
                                               <option value="1" selected>W</option>
-                                              <option value="1000">MW</option>
-                                              <option value="1000000">GW</option>
+                                              <option value="1000">KW</option>
+                                              <option value="1000000">MW</option>
+                                              <option value="1000000000">GW</option>
                                             </select>
                                         </div>
                                     </div>
@@ -119,7 +120,7 @@
                                     var multiplier = document.getElementById("multiplier").value;
                                     var long = document.getElementById("inputLong").value;
                                     var width = document.getElementById("inputWidth").value;
-                                    document.getElementById("calculatorResult").innerHTML = "\\( efisiensi = \\frac{P}{(p \\times l)} \\times 100 \\% \\)<br/>&emsp;&emsp;&emsp;&emsp;&emsp; \\( = \\frac{" + watt + "}{(" + long + " \\times " + width + ")} \\times 100 \\% \\)<br/>&emsp;&emsp;&emsp;&emsp;&emsp; \\( = " + ((watt/(long*width))/multiplier) + " ~ \\% \\)";
+                                    document.getElementById("calculatorResult").innerHTML = "\\( efisiensi = \\frac{P}{(p \\times l)} \\times 100 \\% \\)<br/>&emsp;&emsp;&emsp;&emsp;&emsp; \\( = \\frac{" + watt + "}{(" + long + " \\times " + width + ")} \\times 100 \\% \\)<br/>&emsp;&emsp;&emsp;&emsp;&emsp; \\( = " + ((watt/(long*width))*multiplier) + " ~ \\% \\)";
                                     MathJax.typeset(); 
                                 }
                             </script>
